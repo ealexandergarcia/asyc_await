@@ -54,3 +54,15 @@ export const getUser = async (arg) => {
     let data = await res.json();
     return data;
   }
+
+  export const patchUser = async(userId,arg)=>{
+    let config = {  
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(arg)
+    };
+    let res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, config);
+    let data = await res.json();
+    return data;
+  }
+  
