@@ -18,7 +18,6 @@ export const getUser = async (arg) => {
     if (typeof phone !== "string" || phone === undefined) return { status: 406, message: `The data phone is not arriving or does not comply with the required format` }
     if (typeof website !== "string" || website === undefined) return { status: 406, message: `The data website is not arriving or does not comply with the required format` }
     if (typeof company !== "object" || company === undefined) return { status: 406, message: `The data company is not arriving or does not comply with the required format` }
-    
   }
   
   export const addUser = async (arg) => {
@@ -33,3 +32,25 @@ export const getUser = async (arg) => {
     let data = await res.json();
     return data;
   };
+  const validateUpdateUser = async ({ name, username, email, address, phone, website, company, userId}) => {
+    if (typeof name !== "string") return { status: 406, message: `The data name is not arriving or does not comply with the required format` }
+    if (typeof username !== "string") return { status: 406, message: `The data username is not arriving or does not comply with the required format` }
+    if (typeof email !== "string" ) return { status: 406, message: `The data email is not arriving or does not comply with the required format` }
+    if (typeof address !== "object" ) return { status: 406, message: `The data address is not arriving or does not comply with the required format` }
+    if (typeof phone !== "string" ) return { status: 406, message: `The data phone is not arriving or does not comply with the required format` }
+    if (typeof website !== "string" ) return { status: 406, message: `The data website is not arriving or does not comply with the required format` }
+    if (typeof company !== "object" ) return { status: 406, message: `The data company is not arriving or does not comply with the required format` }
+    if (!userId || typeof userId!== "number") throw { status: 406, message: `The data userId is not arriving or does not comply with the required format` }
+  }
+  export const updateUser = async(arg)=>{
+    let val = await validateUpdateUser(arg);
+    if (val) return val;
+    let config = {  
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(arg)
+    };
+    let res = await fetch(`https://jsonplaceholder.typicode.com/users/${arg.userId}`, config);
+    let data = await res.json();
+    return data;
+  }
