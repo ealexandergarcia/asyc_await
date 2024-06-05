@@ -6,7 +6,7 @@ export const getAllPosts = async () => {
 };
 
 
-const validateAddAlbum = async ({ userId, title, body }) => {
+const validateAddPost = async ({ userId, title, body }) => {
     if (typeof title !== "string" || title === undefined) return { status: 406, message: ` The data ${title} is not arriving or does not comply with the requiered format` }
     if (typeof body !== "string" || body === undefined) return { status: 406, message: ` The data ${body} is not arriving or does not comply with the requiered format` }
     let user = await getUser({ userId })
@@ -26,7 +26,7 @@ export const getPost = async (arg) => {
     return data;
 };
 export const addPost = async (arg) => {
-    let val = await validateAddAlbum(arg);
+    let val = await validateAddPost(arg);
     if (val) return val;
     let config = {
         method: "POST",
