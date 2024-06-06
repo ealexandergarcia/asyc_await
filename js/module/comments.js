@@ -1,6 +1,6 @@
 import { getPost } from "./posts.js";
 export const getAllComments= async () => {
-    let res = await fetch("https://jsonplaceholder.typicode.com/comments");
+    let res = await fetch("http://172.16.101.146:5801/comments");
     let data = await res.json();
     return data;
 };
@@ -21,7 +21,7 @@ export const addComments = async (arg) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(arg)
     };
-    let res = await fetch("https://jsonplaceholder.typicode.com/comments", config);
+    let res = await fetch("http://172.16.101.146:5801/comments", config);
     let data = await res.json();
     return data;
 };
