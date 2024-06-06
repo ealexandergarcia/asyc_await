@@ -1,10 +1,16 @@
+export const getAllUsers = async () => {
+  let res = await fetch("http://172.16.101.146:5804/users");
+  let data = await res.json();
+  return data;
+};
+
 const validateGetUser = async({userId}) =>{
-    if (typeof userId !== "number" || userId === undefined) return { status: 406, message: ` The data ${userId} is not arriving or does not comply with the requiered format` }
+    if (typeof userId !== "string" || userId === undefined) return { status: 406, message: ` The data ${userId} is not arriving or does not comply with the requiered format` }
   }
 export const getUser = async (arg) => {
     let val = await validateGetUser(arg);
     if (val) return val;
-    let res = await fetch(`https://jsonplaceholder.typicode.com/users/${arg.userId}`);
+    let res = await fetch(`http://172.16.101.146:5804/users/${arg.userId}`);
     if(res.status === 404) return { status: 204, message: `Username does not exist` }
     let data = await res.json();
     return data;
@@ -28,7 +34,7 @@ export const getUser = async (arg) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(arg)
     };
-    let res = await fetch("https://jsonplaceholder.typicode.com/users", config);
+    let res = await fetch("http://172.16.101.146:5804/users", config);
     let data = await res.json();
     return data;
   };
@@ -40,7 +46,7 @@ export const getUser = async (arg) => {
     if (typeof phone !== "string" ) return { status: 406, message: `The data phone is not arriving or does not comply with the required format` }
     if (typeof website !== "string" ) return { status: 406, message: `The data website is not arriving or does not comply with the required format` }
     if (typeof company !== "object" ) return { status: 406, message: `The data company is not arriving or does not comply with the required format` }
-    if (!userId || typeof userId!== "number") throw { status: 406, message: `The data userId is not arriving or does not comply with the required format` }
+    if (!userId || typeof userId!== "string") throw { status: 406, message: `The data userId is not arriving or does not comply with the required format` }
   }
   export const updateUser = async(arg)=>{
     let val = await validateUpdateUser(arg);
@@ -50,7 +56,7 @@ export const getUser = async (arg) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(arg)
     };
-    let res = await fetch(`https://jsonplaceholder.typicode.com/users/${arg.userId}`, config);
+    let res = await fetch(`http://172.16.101.146:5804/users/${arg.userId}`, config);
     let data = await res.json();
     return data;
   }
@@ -61,7 +67,15 @@ export const getUser = async (arg) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(arg)
     };
-    let res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, config);
+    let res = await fetch(`http://172.16.101.146:5804/users/${userId}`, config);
+    let data = await res.json();
+    return data;
+  }
+  export const deleteUser = async(userId)=>{
+    let config = {  
+      method: "DELETE"
+    };
+    let res = await fetch(`http://172.16.101.146:5804/users/${userId}`, config);
     let data = await res.json();
     return data;
   }

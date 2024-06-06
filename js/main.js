@@ -1,13 +1,17 @@
 import { getAllAlbums,addAlbum } from "./module/album.js";
-import { getUser, addUser, updateUser, patchUser } from "./module/users.js";
+import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser} from "./module/users.js";
 import { getAllPosts, addPost, getPost} from "./module/posts.js";
 import { getAllComments, addComments} from "./module/comments.js";
 import { getAllTodos, addTodos} from "./module/todos.js";
 
 
-const userData = { username: "NewUsername" };
-console.log(await getUser({userId: 1}));
-console.log(await patchUser(1,userData))
+// const userData = { username: "NewUsername" };
+console.log(await getAllUsers());
+// console.log(await getUser({userId: "a73e"}));
+// console.log(await addUser(userData));
+// console.log(await updateUser(userData));
+// console.log(await deleteUser("a73e"));
+// console.log(await patchUser(1,userData))
 
 // const userData = {
 //     userId:1,
@@ -32,13 +36,12 @@ console.log(await patchUser(1,userData))
 //         "bs": "harness real-time e-markets"
 //       }
 //   };
-// console.log(await updateUser(userData));
-// console.log(await addUser(userData));
 // console.table(await addTodos({userId:10,title:"prueba",completed: true}));
 
 // console.table(await addComments({postId:100, name:"Prueba",email:"prueba@gmail.com", body:"Prueba de contenido"}))
 // console.table(await getPost({postId:1}));
 // console.table(await addPost({userId:10, title:"Prueba", body:"Prueba de contenido"}))
 // console.table(await getAllPosts())
+// console.table(await getAllAlbums())
 // console.table(await addAlbum({userId:1, title:"Prueba"}));
 
