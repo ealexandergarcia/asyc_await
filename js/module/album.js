@@ -38,3 +38,15 @@ export const addAlbum = async (arg) => {
   return data;
 };
 
+export const updateAlbum  = async(id,arg)=>{
+  let val = await validateAddAlbum (arg);
+  if (val) return val;
+  let config = {  
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(arg)
+  };
+  let res = await fetch(`http://172.16.101.146:5802/albums/${id}`, config);
+  let data = await res.json();
+  return data;
+}
