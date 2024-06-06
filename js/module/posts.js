@@ -1,6 +1,6 @@
 import { getUser } from "./users.js";
 export const getAllPosts = async () => {
-    let res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    let res = await fetch("http://172.16.101.146:5800/posts");
     let data = await res.json();
     return data;
 };
@@ -14,13 +14,13 @@ const validateAddPost = async ({ userId, title, body }) => {
 }
 
 const validateGetPost = async ({ postId }) => {
-    if (typeof postId !== "number" || postId === undefined) return { status: 406, message: ` The data ${postId} is not arriving or does not comply with the requiered format` }
+    if (typeof postId !== "string" || postId === undefined) return { status: 406, message: ` The data ${postId} is not arriving or does not comply with the requiered format` }
 }
 
 export const getPost = async (arg) => {
     let val = await validateGetPost(arg);
     if (val) return val;
-    let res = await fetch(`https://jsonplaceholder.typicode.com/posts/${arg.postId}`);
+    let res = await fetch(`http://172.16.101.146:5800/posts/${arg.postId}`);
     if (res.status === 404) return { status: 204, message: `Username does not exist` }
     let data = await res.json();
     return data;
@@ -33,7 +33,7 @@ export const addPost = async (arg) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(arg)
     };
-    let res = await fetch("https://jsonplaceholder.typicode.com/albums", config);
+    let res = await fetch("http://172.16.101.146:5800/posts", config);
     let data = await res.json();
     return data;
 };
