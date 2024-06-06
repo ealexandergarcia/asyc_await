@@ -61,3 +61,15 @@ export const patchAlbum  = async(id,arg)=>{
   let data = await res.json();
   return data;
 }
+
+export const deleteAlbum  = async(albumId)=>{
+  let config = {  
+    method: "DELETE"
+  };
+  let res = await fetch(`http://172.16.101.146:5802/albums/${albumId}`, config);
+  if(res.status ===404) return {status: 204, message:"the album id does not exist or has an unaccepted format"}
+  let data = await res.json();
+  data.status = 202;
+  data.message =`The album ${albumId} was deleted from the database`
+  return data;
+}
