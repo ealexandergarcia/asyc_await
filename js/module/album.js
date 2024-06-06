@@ -50,3 +50,14 @@ export const updateAlbum  = async(id,arg)=>{
   let data = await res.json();
   return data;
 }
+
+export const patchAlbum  = async(id,arg)=>{
+  let config = {  
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(arg)
+  };
+  let res = await fetch(`http://172.16.101.146:5802/albums/${id}`, config);
+  let data = await res.json();
+  return data;
+}

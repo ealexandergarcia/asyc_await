@@ -1,4 +1,4 @@
-import { getAllAlbums,addAlbum, getAlbum, updateAlbum} from "./module/album.js";
+import { getAllAlbums,addAlbum, getAlbum, updateAlbum, patchAlbum} from "./module/album.js";
 import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser} from "./module/users.js";
 import { getAllPosts, addPost, getPost} from "./module/posts.js";
 import { getAllComments, addComments} from "./module/comments.js";
@@ -48,6 +48,7 @@ const albumdata = {userId:"1", title:"Ya no lo filtren"}
 // console.table(await getAlbum("c963"));
 // console.table(await addAlbum({userId:"1", title:"Prueba filtren a Carlos"}));  
 // console.table(await updateAlbum("c963", albumdata))
+// console.table(await patchAlbum("c963",albumdata))
 /**
  * * Metodos para Comments
  */
