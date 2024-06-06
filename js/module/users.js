@@ -78,6 +78,8 @@ export const getUser = async (arg) => {
     let res = await fetch(`http://172.16.101.146:5804/users/${userId}`, config);
     if(res.status ===404) return {status: 204, message:"the album id does not exist or has an unaccepted format"}
     let data = await res.json();
+    data.status = 202;
+    data.message =`The album ${userId} was deleted from the database`
     return data;
   }
   
