@@ -4,19 +4,13 @@ import { getAllPosts, addPost, getPost} from "./module/posts.js";
 import { getAllComments, addComments} from "./module/comments.js";
 import { getAllTodos, addTodos} from "./module/todos.js";
 
-
-// const userData = { username: "NewUsername" };
-console.log(await getAllUsers());
-// console.log(await getUser({userId: "a73e"}));
-// console.log(await addUser(userData));
-// console.log(await updateUser(userData));
-// console.log(await deleteUser("a73e"));
-// console.log(await patchUser(1,userData))
-
+/**
+ * * Metodos para User
+ */
 // const userData = {
-//     userId:1,
+//     userId:"4ecb",
 //     name: "John Doe",
-//     username: "johndoe",
+//     username: "prueba",
 //     email: "johndoe@example.com",
 //     address: {
 //       street: "123 Main St",
@@ -36,12 +30,41 @@ console.log(await getAllUsers());
 //         "bs": "harness real-time e-markets"
 //       }
 //   };
-// console.table(await addTodos({userId:10,title:"prueba",completed: true}));
+
+// const userData = { username: "prueba" };
+
+// console.log(await getAllUsers());
+// console.log(await getUser({userId: "a73e"}));
+// console.log(await addUser(userData));
+// console.log(await updateUser(userData));
+console.log(await deleteUser("775d"));
+// console.log(await patchUser("4ecb",userData))
+
+/**
+ * * Metodos para Album
+ */
+
+// console.table(await getAllAlbums())
+// console.table(await addAlbum({userId:1, title:"Prueba"}));
+
+/**
+ * * Metodos para Comments
+ */
 
 // console.table(await addComments({postId:100, name:"Prueba",email:"prueba@gmail.com", body:"Prueba de contenido"}))
+
+/**
+ * * Metodos para Post
+ */
+
 // console.table(await getPost({postId:1}));
 // console.table(await addPost({userId:10, title:"Prueba", body:"Prueba de contenido"}))
 // console.table(await getAllPosts())
-// console.table(await getAllAlbums())
-// console.table(await addAlbum({userId:1, title:"Prueba"}));
+
+
+/**
+ * * Metodos para Todos
+ */
+// console.table(await addTodos({userId:10,title:"prueba",completed: true}));
+
 
