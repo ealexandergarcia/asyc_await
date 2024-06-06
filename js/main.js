@@ -1,8 +1,82 @@
-import { getAllAlbums,addAlbum, getAlbum, updateAlbum, patchAlbum, deleteAlbum} from "./module/album.js";
-import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser} from "./module/users.js";
-import { getAllPosts, addPost, getPost} from "./module/posts.js";
-import { getAllComments, addComments} from "./module/comments.js";
-import { getAllTodos, addTodos} from "./module/todos.js";
+import { getAllAlbums, addAlbum, getAlbum, updateAlbum, patchAlbum, deleteAlbum } from "./module/album.js";
+import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser } from "./module/users.js";
+import { getAllPosts, addPost, getPost } from "./module/posts.js";
+import { getAllComments, addComments } from "./module/comments.js";
+import { getAllTodos, addTodos } from "./module/todos.js";
+
+let menuAlbums = async ()=>{
+    let menu = prompt (`
+        Album Menu
+            1. SearchAll
+            2. Add
+            3. Delete
+    `,1);
+    menu = Number(menu);
+    if(menu == 1) {
+        return await getAllAlbums();
+    }
+    if(menu == 2 ) {
+        let userId = prompt("Enter the user id",10);
+        let title = prompt("Enter the album title","Gallery");
+        return await addAlbum({userId,title});
+    }
+    if(menu == 3) {
+        let id = prompt("Enter the album id you want to delete",10);
+        return await deleteAlbum(id);
+    }
+}
+
+let menuPost = async()=>{
+    let menu = prompt(`
+    Post Menu
+        1. SearchAll
+        2. Add
+        3. Delete
+    `,1);
+    menu = Number(menu);
+    if(menu == 1) {
+        return await getAllPosts();
+    }
+    if(menu == 2 ) {
+        let userId = prompt("Enter the user id",10);
+        let title = prompt("Enter the post title","Hello");
+        let body = prompt("Enter the post body","This is a sample post");
+        return await addPost({userId,title,body});
+    }
+}
+
+let opc = null;
+do {
+    opc = prompt(`
+    Select an option
+        1. Albums
+        2. Post
+        0. Exit
+
+    `, 1);
+    opc = Number(opc)
+    if(opc ==1) alert(JSON.stringify(await menuAlbums(), null,4));
+    if(opc ==2) alert(JSON.stringify(await menuPost(), null,4));
+} while (opc != 0);
+
+
+// let opc = prompt(`
+//     Select an option
+//         1. Albums
+//         2. Post
+//         3. Comments
+
+// `,1 );
+
+// let menu = prompt (`
+//     Album Menu
+//         1. Add
+//         2. Delete
+//         3. SearchAll
+//         4. SearchOne
+//         5. UpdateAll
+//         6. UpdateOne
+// `,1);
 
 /**
  * * Metodos para User
