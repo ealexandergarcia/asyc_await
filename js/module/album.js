@@ -6,6 +6,18 @@ export const getAllAlbums = async () => {
   return data;
 };
 
+const validateGetAlbums = async(albumId) =>{
+  if (typeof albumId !== "string" || albumId === undefined) return { status: 406, message: ` The data albumId is not arriving or does not comply with the requiered format` }
+}
+export const getAlbum = async (arg) => {
+  let val = await validateGetAlbums(arg);
+  if (val) return val;
+  let res = await fetch(`http://172.16.101.146:5802/albums/${arg}`);
+  if(res.status === 404) return { status: 204, message: `Album does not exist` }
+  let data = await res.json();
+  return data;
+};
+
 const validateAddAlbum = async ({ userId, title }) =>{
   if (typeof userId != "string" || userId === undefined) return { status: 406, message: ` The data ${userId} is not arriving or does not comply with the requiered format` }
   if (typeof title !== "string" || title === undefined) return { status: 406, message: ` The data ${title} is not arriving or does not comply with the requiered format` }

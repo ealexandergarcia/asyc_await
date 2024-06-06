@@ -1,4 +1,4 @@
-import { getAllAlbums,addAlbum } from "./module/album.js";
+import { getAllAlbums,addAlbum, getAlbum} from "./module/album.js";
 import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser} from "./module/users.js";
 import { getAllPosts, addPost, getPost} from "./module/posts.js";
 import { getAllComments, addComments} from "./module/comments.js";
@@ -37,14 +37,14 @@ import { getAllTodos, addTodos} from "./module/todos.js";
 // console.log(await getUser({userId: "a73e"}));
 // console.log(await addUser(userData));
 // console.log(await updateUser(userData));
-console.log(await deleteUser("775d"));
+// console.log(await deleteUser("775d"));
 // console.log(await patchUser("4ecb",userData))
 
 /**
  * * Metodos para Album
  */
-
-// console.table(await getAllAlbums())
+console.table(await getAlbum("100"));
+// console.table(await getAllAlbums());
 // console.table(await addAlbum({userId:1, title:"Prueba"}));
 
 /**
