@@ -6,6 +6,106 @@ import { getAllTodos, addTodos } from "./module/todos.js";
 import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePhotos } from "./module/photos.js";
 
 
+
+// Get the menu elements
+const menuItems = document.querySelectorAll('.menu li a');
+
+// Add event listeners to each menu item
+menuItems.forEach((menuItem) => {
+    menuItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = menuItem.id;
+        switch (id) {
+            case 'get-all-users':
+                getAllUsers().then((data) => {
+                    displayOutput(data);
+                });
+                break;
+            case 'get-user':
+                const userId = prompt('Enter user ID:');
+                if (userId) {
+                    getUser({ userId }).then((data) => {
+                        displayOutput(data);
+                    });
+                }
+                break;
+            case 'add-user':
+                const userData = {
+                    name: prompt('Enter name:'),
+                    username: prompt('Enter username:'),
+                    email: prompt('Enter email:'),
+                    address: {
+                        street: prompt('Enter street:'),
+                        city: prompt('Enter city:'),
+                        state: prompt('Enter state:'),
+                        zip: prompt('Enter zip:'),
+                    },
+                    phone: prompt('Enter phone:'),
+                    website: prompt('Enter website:'),
+                    company: {
+                        name: prompt('Enter company name:'),
+                        catchPhrase: prompt('Enter catch phrase:'),
+                        bs: prompt('Enter bs:'),
+                    },
+                };
+                addUser(userData).then((data) => {
+                    displayOutput(data);
+                });
+                break;
+            case 'update-user':
+                const updateUserId = prompt('Enter user ID:');
+                const updateUserData = {
+                    name: prompt('Enter new name:'),
+                    username: prompt('Enter new username:'),
+                    email: prompt('Enter new email:'),
+                    address: {
+                        street: prompt('Enter new street:'),
+                        city: prompt('Enter new city:'),
+                        state: prompt('Enter new state:'),
+                        zip: prompt('Enter new zip:'),
+                    },
+                    phone: prompt('Enter new phone:'),
+                    website: prompt('Enter new website:'),
+                    company: {
+                        name: prompt('Enter new company name:'),
+                        catchPhrase: prompt('Enter new catch phrase:'),
+                        bs: prompt('Enter new bs:'),
+                    },
+                };
+                updateUser({ userId: updateUserId,...updateUserData }).then((data) => {
+                    displayOutput(data);
+                });
+                break;
+            case 'patch-user':
+                const patchUserId = prompt('Enter user ID:');
+                const patchUserData = {
+                    name: prompt('Enter new name:'),
+                    username: prompt('Enter new username:'),
+                    email: prompt('Enter new email:'),
+                };
+                patchUser(patchUserId, patchUserData).then((data) => {
+                    displayOutput(data);
+                });
+                break;
+            case 'delete-user':
+                const deleteUserId = prompt('Enter user ID:');
+                deleteUser(deleteUserId).then((data) => {
+                    displayOutput(data);
+                });
+                break;
+        }
+    });
+});
+
+// Function to display output
+function displayOutput(data) {
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = '';
+    outputDiv.innerText = JSON.stringify(data, null, 2);
+}
+
+
+
 // let menuAlbums = async ()=>{
 //     let menu = prompt (`
 //         Album Menu
@@ -150,9 +250,9 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 /**
  * * Metodos para photos
  */
-console.table(await getAllPhotos());
-console.table(await getPhotos("e54b"));
+// console.table(await getAllPhotos());
+// console.table(await getPhotos("e54b"));
 // console.table(await addPhotos({albumId:"b597",title:"Prueba",url:"www.prueba.com",thumbnailUrl:"www.prueba.com"}));
 // console.table(await updatePhotos("e54b", {albumId:"b597",title:"Prueba123213",url:"www.prue321321ba.com",thumbnailUrl:"w32131ww.prueba.com"}));
 // console.table(await patchPhotos("e54b", {title:"Prueba Final"}));
-console.table(await deletePhotos("e54b"));
+// console.table(await deletePhotos("e54b"));
