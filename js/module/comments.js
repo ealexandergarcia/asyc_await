@@ -26,9 +26,10 @@ export const addComments = async (arg) => {
     return data;
 };
 
-export const updateComments = async (id, arg) => {
+export const updateComments = async (arg) => {
     let val = await validateAddComments(arg);
     if (val) return val;
+    let {id} = arg
     let config = {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -39,7 +40,8 @@ export const updateComments = async (id, arg) => {
     return data;
 }
 
-export const patchComments = async (id, arg) => {
+export const patchComments = async (arg) => {
+    let {id} = arg;
     let config = {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

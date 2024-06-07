@@ -1,7 +1,7 @@
 import { getAllAlbums, addAlbum, getAlbum, updateAlbum, patchAlbum, deleteAlbum } from "./module/album.js";
 import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser } from "./module/users.js";
 import { getAllPosts, addPost, getPost } from "./module/posts.js";
-import { getAllComments, addComments } from "./module/comments.js";
+import { getAllComments, addComments, updateComments,patchComments,deleteComments } from "./module/comments.js";
 import { getAllTodos, addTodos } from "./module/todos.js";
 import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePhotos } from "./module/photos.js";
 
@@ -119,18 +119,21 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 /**
  * * Metodos para Album
  */
-// const albumdata = {userId:"1", title:"Ya no lo filtren"}
+// const albumdata = {id:"e59a", userId:"1", title:"prueba "}
 // console.table(await getAllAlbums());
-// console.table(await getAlbum("c963"));
+// console.table(await getAlbum({id:"e59a"}));
 // console.table(await addAlbum({userId:"1", title:"Prueba filtren a Carlos"}));  
-// console.table(await updateAlbum("c963", albumdata))
+// console.table(await updateAlbum(albumdata))
 // console.table(await patchAlbum("c963",albumdata))
 // console.table(await deleteAlbum("c963"))
 /**
  * * Metodos para Comments
  */
 
-// console.table(await addComments({postId:100, name:"Prueba",email:"prueba@gmail.com", body:"Prueba de contenido"}))
+// console.table(await addComments({postId:"458c", name:"Prueba2",email:"prueba2@gmail.com", body:"Prueba2 de contenido"}))
+// console.table(await getAllComments())
+// console.table(await patchComments({id:"bcd0", postId:"458c"}))
+// console.table(await deleteComments("3224"))
 
 /**
  * * Metodos para Post
@@ -150,9 +153,9 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 /**
  * * Metodos para photos
  */
-console.table(await getAllPhotos());
-console.table(await getPhotos("e54b"));
+// console.table(await getAllPhotos());
+// console.table(await getPhotos("e54b"));
 // console.table(await addPhotos({albumId:"b597",title:"Prueba",url:"www.prueba.com",thumbnailUrl:"www.prueba.com"}));
 // console.table(await updatePhotos("e54b", {albumId:"b597",title:"Prueba123213",url:"www.prue321321ba.com",thumbnailUrl:"w32131ww.prueba.com"}));
 // console.table(await patchPhotos("e54b", {title:"Prueba Final"}));
-console.table(await deletePhotos("e54b"));
+// console.table(await deletePhotos("e54b"));
