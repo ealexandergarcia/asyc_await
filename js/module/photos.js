@@ -1,7 +1,7 @@
 import { getAlbum } from "./album.js";
 
 export const getAllPhotos = async () => {
-    let res = await fetch("https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos");
+    let res = await fetch("http://172.16.101.146:5803/photos");
     let data = await res.json();
     return data;
 };
@@ -12,7 +12,7 @@ const validateGetPhotos = async (photosId) => {
 export const getPhotos = async (arg) => {
     let val = await validateGetPhotos(arg);
     if (val) return val;
-    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${arg}`);
+    let res = await fetch(`http://172.16.101.146:5803/photos/${arg}`);
     if (res.status === 404) return { status: 204, message: `Photo does not exist` }
     let data = await res.json();
     return data;
@@ -35,7 +35,7 @@ export const addPhotos = async (arg) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(arg)
     };
-    let res = await fetch("https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos", config);
+    let res = await fetch("http://172.16.101.146:5803/photos", config);
     let data = await res.json();
     return data;
 };
@@ -48,7 +48,7 @@ export const updatePhotos = async (id, arg) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(arg)
     };
-    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${id}`, config);
+    let res = await fetch(`http://172.16.101.146:5803/photos/${id}`, config);
     let data = await res.json();
     return data;
 }
@@ -59,7 +59,7 @@ export const patchPhotos = async (id, arg) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(arg)
     };
-    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${id}`, config);
+    let res = await fetch(`http://172.16.101.146:5803/photos/${id}`, config);
     let data = await res.json();
     return data;
 }
@@ -68,7 +68,7 @@ export const deletePhotos = async (photosId) => {
     let config = {
         method: "DELETE"
     };
-    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${photosId}`, config);
+    let res = await fetch(`http://172.16.101.146:5803/photos/${photosId}`, config);
     if (res.status === 404) return { status: 204, message: "the Photos id does not exist or has an unaccepted format" }
     let data = await res.json();
     data.status = 202;
