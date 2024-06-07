@@ -64,3 +64,14 @@ export const patchPhotos = async (id, arg) => {
     return data;
 }
 
+export const deletePhotos = async (photosId) => {
+    let config = {
+        method: "DELETE"
+    };
+    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${photosId}`, config);
+    if (res.status === 404) return { status: 204, message: "the Photos id does not exist or has an unaccepted format" }
+    let data = await res.json();
+    data.status = 202;
+    data.message = `The Photos ${photosId} was deleted from the database`
+    return data;
+}

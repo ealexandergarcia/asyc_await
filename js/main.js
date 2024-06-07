@@ -3,7 +3,7 @@ import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser } from
 import { getAllPosts, addPost, getPost } from "./module/posts.js";
 import { getAllComments, addComments } from "./module/comments.js";
 import { getAllTodos, addTodos } from "./module/todos.js";
-import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos } from "./module/photos.js";
+import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePhotos } from "./module/photos.js";
 
 
 // let menuAlbums = async ()=>{
@@ -150,8 +150,9 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos } from ".
 /**
  * * Metodos para photos
  */
-// console.table(await getAllPhotos());
+console.table(await getAllPhotos());
 console.table(await getPhotos("e54b"));
 // console.table(await addPhotos({albumId:"b597",title:"Prueba",url:"www.prueba.com",thumbnailUrl:"www.prueba.com"}));
 // console.table(await updatePhotos("e54b", {albumId:"b597",title:"Prueba123213",url:"www.prue321321ba.com",thumbnailUrl:"w32131ww.prueba.com"}));
 // console.table(await patchPhotos("e54b", {title:"Prueba Final"}));
+console.table(await deletePhotos("e54b"));
