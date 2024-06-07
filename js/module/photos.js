@@ -53,3 +53,14 @@ export const updatePhotos = async (id, arg) => {
     return data;
 }
 
+export const patchPhotos = async (id, arg) => {
+    let config = {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(arg)
+    };
+    let res = await fetch(`https://eeb0d5d633a3ac44a1c6ad64f07d43a4.serveo.net/photos/${id}`, config);
+    let data = await res.json();
+    return data;
+}
+
