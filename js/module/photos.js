@@ -53,7 +53,57 @@ export const updatePhotos = async (id, arg) => {
     return data;
 }
 
-export const patchPhotos = async (id, arg) => {
+const validateUpdatePhotos = async ({ idAlbum, title, url, thumbnailUrl }) => {
+    let errors = {};
+
+    if (idAlbum !== undefined) {
+        if (typeof idAlbum !== "string") {
+            errors.idAlbum = `The data idAlbum is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (title !== undefined) {
+        if (typeof title !== "string") {
+            errors.title = `The data title is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (url !== undefined) {
+        if (typeof url !== "string") {
+            errors.url = `The data url is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (thumbnailUrl !== undefined) {
+        if (typeof thumbnailUrl !== "string") {
+            errors.thumbnailUrl = `The data thumbnailUrl is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (idAlbum !== undefined) {
+        let album = await getAlbum( idAlbum )
+        console.log('a');
+        
+        if (album.status == 204) {
+            errors.thumbnailUrl = `Album does not exist`;
+        }
+    }
+    if (Object.keys(errors).length > 0) {
+        return { status: 406, message: "Error en los datos", errors };
+    }
+
+}
+
+export const patchPhotos = async (arg) => {
+    let val = await validateUpdatePhotos(arg);
+    if (val) {
+        if (val.status === 200) {
+            return val;
+        } else {
+            return val;
+        }
+    }
+    let { id } = arg;
     let config = {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

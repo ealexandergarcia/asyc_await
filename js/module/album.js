@@ -9,7 +9,7 @@ export const getAllAlbums = async () => {
 // const validateGetAlbums = async ({albumId}) => {
 //   if (typeof albumId !== "string" || albumId === undefined) return { status: 406, message: ` The data albumId is not arriving or does not comply with the requiered format` }
 // }
-export const getAlbum = async ({id}) => {
+export const getAlbum = async (id) => {
   // let val = await validateGetAlbums(arg);
   // if (val) return val;
   let res = await fetch(`http://172.16.101.146:5802/albums/${id}`);
