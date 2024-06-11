@@ -1,6 +1,6 @@
 import { getAllAlbums, addAlbum, getAlbum, updateAlbum, patchAlbum, deleteAlbum } from "./module/album.js";
 import { getUser, addUser, updateUser, patchUser, getAllUsers, deleteUser } from "./module/users.js";
-import { getAllPosts, addPost, getPost } from "./module/posts.js";
+import { getAllPosts, addPost, getPost, patchPost } from "./module/posts.js";
 import { getAllComments, addComments, updateComments,patchComments,deleteComments } from "./module/comments.js";
 import { getAllTodos, addTodos } from "./module/todos.js";
 import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePhotos } from "./module/photos.js";
@@ -107,24 +107,24 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 //       }
 //   };
 
-// const userData = { username: "prueba" };
+const userData = {id:"dfac", email: "true" };
 
 // console.log(await getAllUsers());
-// console.log(await getUser({userId: "a73e"}));
+// console.log(await getUser("27ca"));
 // console.log(await addUser(userData));
 // console.log(await updateUser(userData));
 // console.log(await deleteUser("775d"));
-// console.log(await patchUser("4ecb",userData))
+console.table(await patchUser(userData))
 
 /**
  * * Metodos para Album
  */
-// const albumdata = {id:"e59a", userId:"1", title:"prueba "}
+// const albumdata = {id:"61a4", title:"12"}
 // console.table(await getAllAlbums());
 // console.table(await getAlbum({id:"e59a"}));
 // console.table(await addAlbum({userId:"1", title:"Prueba filtren a Carlos"}));  
 // console.table(await updateAlbum(albumdata))
-// console.table(await patchAlbum("c963",albumdata))
+// console.table(await patchAlbum(albumdata))
 // console.table(await deleteAlbum("c963"))
 /**
  * * Metodos para Comments
@@ -132,7 +132,7 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 
 // console.table(await addComments({postId:"458c", name:"Prueba2",email:"prueba2@gmail.com", body:"Prueba2 de contenido"}))
 // console.table(await getAllComments())
-// console.table(await patchComments({id:"bcd0", postId:"458c"}))
+// console.table(await patchComments({id:"bcd0", email:"prueba2@gmail.com"}))
 // console.table(await deleteComments("3224"))
 
 /**
@@ -142,6 +142,7 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 // console.table(await getPost({postId:1}));
 // console.table(await addPost({userId:10, title:"Prueba", body:"Prueba de contenido"}))
 // console.table(await getAllPosts())
+// console.table(await patchPost({id:"a16e",userId:"27ca"}));
 
 
 /**
@@ -157,5 +158,5 @@ import { getAllPhotos, getPhotos, addPhotos, updatePhotos, patchPhotos, deletePh
 // console.table(await getPhotos("e54b"));
 // console.table(await addPhotos({albumId:"b597",title:"Prueba",url:"www.prueba.com",thumbnailUrl:"www.prueba.com"}));
 // console.table(await updatePhotos("e54b", {albumId:"b597",title:"Prueba123213",url:"www.prue321321ba.com",thumbnailUrl:"w32131ww.prueba.com"}));
-// console.table(await patchPhotos("e54b", {title:"Prueba Final"}));
+// console.table(await patchPhotos({id:"9316",thumbnailUrl:"true"}));
 // console.table(await deletePhotos("e54b"));

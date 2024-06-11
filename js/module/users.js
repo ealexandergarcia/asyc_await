@@ -61,13 +61,68 @@ export const getUser = async (arg) => {
     return data;
   }
 
-  export const patchUser = async(userId,arg)=>{
-    let config = {  
+  const validatePatchUser = async ({ name, username, email, address, phone, website, company }) => {
+    let errors = {};
+  
+    if (name!== undefined) {
+      if (typeof name!== "string") {
+        errors.name = `The data name is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (username!== undefined) {
+      if (typeof username!== "string") {
+        errors.username = `The data username is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (email!== undefined) {
+      if (typeof email!== "string") {
+        errors.email = `The data email is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (address!== undefined) {
+      if (typeof address!== "object") {
+        errors.address = `The data address is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (phone!== undefined) {
+      if (typeof phone!== "string") {
+        errors.phone = `The data phone is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (website!== undefined) {
+      if (typeof website!== "string") {
+        errors.website = `The data website is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (company!== undefined) {
+      if (typeof company!== "object") {
+        errors.company = `The data company is not arriving or does not comply with the required format`;
+      }
+    }
+  
+    if (Object.keys(errors).length > 0) {
+      return { status: 406, message: "Error en los datos", errors };
+    }
+  }
+  
+  export const patchUser = async (arg) => {
+    let val = await validatePatchUser(arg);
+    if (val) {
+      return val;
+    }
+    let { id } = arg;
+    let config = {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(arg)
     };
-    let res = await fetch(`http://172.16.101.146:5804/users/${userId}`, config);
+    let res = await fetch(`http://172.16.101.146:5804/users/${id}`, config);
     let data = await res.json();
     return data;
   }
