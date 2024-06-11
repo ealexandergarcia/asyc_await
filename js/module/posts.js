@@ -50,8 +50,44 @@ export const updatePost = async (id, arg) => {
     let data = await res.json();
     return data;
 }
+const validateUpdatePost = async ({ title, body, userId }) => {
+    let errors = {};
 
-export const patchPost = async (id, arg) => {
+    if (title !== undefined) {
+        if (typeof title !== "string") {
+            errors.title = `The data title is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (body !== undefined) {
+        if (typeof body !== "string") {
+            errors.body = `The data body is not arriving or does not comply with the required format`;
+        }
+    }
+
+    if (userId !== undefined) {
+        let user = await getUser( userId )
+        if (user.status == 204) {
+            errors.userId = `Username does not exist`;
+        }
+    }
+
+    if (Object.keys(errors).length > 0) {
+        return { status: 406, message: "Error en los datos", errors };
+    }
+
+}
+
+export const patchPost = async (arg) => {
+    let val = await validateUpdatePost(arg);
+    if (val) {
+        if (val.status === 200) {
+            return val;
+        } else {
+            return val;
+        }
+    }
+    let { id } = arg;
     let config = {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

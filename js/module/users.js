@@ -4,13 +4,13 @@ export const getAllUsers = async () => {
   return data;
 };
 
-const validateGetUser = async({userId}) =>{
+const validateGetUser = async(userId) =>{
     if (typeof userId !== "string" || userId === undefined) return { status: 406, message: ` The data ${userId} is not arriving or does not comply with the requiered format` }
   }
 export const getUser = async (arg) => {
     let val = await validateGetUser(arg);
     if (val) return val;
-    let res = await fetch(`http://172.16.101.146:5804/users/${arg.userId}`);
+    let res = await fetch(`http://172.16.101.146:5804/users/${arg}`);
     if(res.status === 404) return { status: 204, message: `Username does not exist` }
     let data = await res.json();
     return data;
